@@ -1,0 +1,13 @@
+{
+  "name": "ray-scr-project-page",
+  "version": "1.0.0",
+  "private": true,
+  "type": "module",
+  "scripts": {
+    "dev": "node server.mjs",
+    "start": "node server.mjs",
+    "build:tables": "python3 build_tables.py",
+    "sync:paper": "python3 sync-paper.py",
+    "check": "node --check server.mjs && node --check dist/theme.js && node --check dist/app.js && node --check dist/project.js && node --check dist/ray-sphere.js"
+  }
+}

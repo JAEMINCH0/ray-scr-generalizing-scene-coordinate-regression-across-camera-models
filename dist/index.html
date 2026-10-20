@@ -1,0 +1,252 @@
+<!DOCTYPE html>
+
+<html lang="en" data-theme="dark">
+<head>
+<meta charset="utf-8"/>
+<meta content="width=device-width, initial-scale=1" name="viewport"/>
+<meta content="#090909" name="theme-color"/>
+<script src="theme.js"></script>
+<title>Ray-SCR</title>
+<meta content="Ray-SCR: Generalizing Scene Coordinate Regression Across Camera Models. WACV 2027." name="description"/>
+<meta content="Ray-SCR" property="og:title"/>
+<meta content="Generalizing Scene Coordinate Regression Across Camera Models." property="og:description"/>
+<meta content="website" property="og:type"/>
+<meta content="assets/piatrium-poster.png" property="og:image"/>
+<link href="favicon.svg" rel="icon" type="image/svg+xml"/>
+<link href="https://cdn.jsdelivr.net/gh/jpswalsh/academicons@1/css/academicons.min.css" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css?family=Google+Sans%7CNoto+Sans%7CCastoro&amp;display=swap" rel="stylesheet"/><link href="styles.css" rel="stylesheet"/>
+<script defer="" src="project.js"></script>
+<script defer="" src="ray-sphere.js"></script>
+<script defer="" src="app.js"></script>
+</head>
+<body>
+<a class="skip-link" href="#main">Skip to content</a>
+<svg aria-hidden="true" class="icon-library" xmlns="http://www.w3.org/2000/svg">
+<symbol id="i-arrow" viewBox="0 0 24 24"><path d="M5 12h14m-6-6 6 6-6 6"></path></symbol>
+<symbol id="i-up-right" viewBox="0 0 24 24"><path d="M6 18 18 6M6 6h12v12"></path></symbol>
+<symbol id="i-paper" viewBox="0 0 24 24"><path d="M14 3H6a1 1 0 0 0-1 1v16a1 1 0 0 0 1 1h12a1 1 0 0 0 1-1V8ZM14 3v5h5M8 13h8M8 17h6"></path></symbol>
+<symbol id="i-code" viewBox="0 0 24 24"><path d="m8 6-6 6 6 6m8-12 6 6-6 6M14 3l-4 18"></path></symbol>
+<symbol id="i-play" viewBox="0 0 24 24"><path d="m8 5 11 7-11 7Z"></path></symbol>
+<symbol id="i-pause" viewBox="0 0 24 24"><path d="M8 5v14M16 5v14"></path></symbol>
+<symbol id="i-expand" viewBox="0 0 24 24"><path d="M9 4H4v5m11-5h5v5M4 15v5h5m6 0h5v-5"></path></symbol>
+<symbol id="i-close" viewBox="0 0 24 24"><path d="m6 6 12 12M6 18 18 6"></path></symbol>
+<symbol id="i-sun" viewBox="0 0 24 24"><circle cx="12" cy="12" r="4"></circle><path d="M12 2v2m0 16v2M2 12h2m16 0h2M5 5l1 1m12 12 1 1M5 19l1-1M18 6l1-1"></path></symbol>
+<symbol id="i-moon" viewBox="0 0 24 24"><path d="M20 14A8 8 0 0 1 10 4a8 8 0 1 0 10 10Z"></path></symbol>
+</svg>
+<header class="site-header">
+<div class="nav-wrap container">
+<a aria-label="Ray-SCR home" class="wordmark" href="#">
+<img alt="" height="30" src="favicon.svg" width="30"/>
+        Ray-SCR
+</a>
+<nav aria-label="Main navigation">
+<a href="#abstract">Abstract</a>
+<a href="#method">Method</a>
+<a href="#experiments">Experiments</a>
+</nav>
+<button aria-label="Switch to light theme" aria-pressed="false" class="theme-toggle" id="theme-toggle" title="Switch to light theme" type="button"><svg aria-hidden="true" class="icon"><use href="#i-sun"></use></svg></button>
+</div>
+</header>
+<main id="main"><section aria-labelledby="paper-title" class="hero">
+<div aria-hidden="true" class="hero-art">
+<svg class="ray-field ray-field-left" viewBox="0 0 500 600">
+<g fill="none" stroke="currentColor" stroke-width=".6">
+<ellipse cx="220" cy="300" rx="200" ry="215"></ellipse>
+<ellipse cx="220" cy="300" rx="124" ry="215"></ellipse>
+<ellipse cx="220" cy="300" rx="46" ry="215"></ellipse>
+<ellipse cx="220" cy="300" rx="200" ry="74"></ellipse>
+<ellipse cx="220" cy="300" rx="200" ry="158"></ellipse>
+<path d="M20 300h400M220 85v430M220 300 81 146M220 300 403 213M220 300 361 453M220 300 33 377"></path>
+</g>
+<g fill="currentColor"><circle cx="220" cy="300" r="4"></circle><circle cx="81" cy="146" r="3"></circle><circle cx="403" cy="213" r="3"></circle><circle cx="361" cy="453" r="3"></circle></g>
+</svg>
+<svg class="ray-field ray-field-right" viewBox="0 0 500 600">
+<g fill="none" stroke="currentColor" stroke-width=".6">
+<ellipse cx="220" cy="300" rx="200" ry="215"></ellipse>
+<ellipse cx="220" cy="300" rx="124" ry="215"></ellipse>
+<ellipse cx="220" cy="300" rx="46" ry="215"></ellipse>
+<ellipse cx="220" cy="300" rx="200" ry="74"></ellipse>
+<ellipse cx="220" cy="300" rx="200" ry="158"></ellipse>
+<path d="M20 300h400M220 85v430M220 300 81 146M220 300 403 213M220 300 361 453M220 300 33 377"></path>
+</g>
+<g fill="currentColor"><circle cx="220" cy="300" r="4"></circle><circle cx="81" cy="146" r="3"></circle><circle cx="403" cy="213" r="3"></circle><circle cx="361" cy="453" r="3"></circle></g>
+</svg>
+</div>
+<div class="hero-content container">
+<h1 id="paper-title"><!-- paper:title --><span class="paper-name">Ray-SCR:</span> <span class="paper-subtitle">Generalizing <span class="neon-text">Scene Coordinate Regression</span> Across Camera Models</span><!-- /paper:title --></h1>
+<div aria-label="Authors and affiliations" class="people">
+<p class="author-list" id="authors"><span class="author"><a href="https://jaeminch0.github.io/" rel="noopener" target="_blank">Jaemin Cho</a><sup>1</sup></span><span class="author"><a href="https://www.linkedin.com/in/oleksii-nasypanyi-95a23a223/" rel="noopener" target="_blank">Oleksii Nasypanyi</a><sup>1</sup></span><span class="author"><a href="https://frameau.xyz/" rel="noopener" target="_blank">Francois Rameau</a><sup>2</sup></span></p>
+<p class="affiliation-list" id="affiliations"><span><sup>1</sup> Stony Brook University</span><span><sup>2</sup> SUNY Korea</span></p>
+</div><p class="conference">WACV 2027</p>
+<div class="resource-actions">
+<a aria-disabled="true" class="button button-secondary resource-pending" id="paper-link"><svg aria-hidden="true" class="link-icon link-icon-pdf-file" viewBox="0 0 58 58"><path d="M8.8 1.5h28.3l12.1 12.1v42.9H8.8z" fill="#ffffff"></path><path d="M37.1 1.5v12.1h12.1z" fill="#dddddd"></path><path d="M8.8 38.5h40.4v18H8.8z" fill="#d93025"></path><text x="29" y="51" text-anchor="middle" font-size="12" font-weight="700" fill="#ffffff">pdf</text></svg> Paper <span class="soon">SOON</span></a>
+<a aria-disabled="true" class="button button-secondary resource-pending" id="arxiv-link"><i aria-hidden="true" class="link-icon arxiv-icon ai ai-arxiv"></i> arXiv <span class="soon">SOON</span></a>
+<a class="button button-secondary" id="code-link" href="https://github.com/JAEMINCH0/Ray-SCR" target="_blank" rel="noopener"><svg aria-hidden="true" class="link-icon" viewBox="0 0 24 24"><path fill="currentColor" d="M12 .5C5.65.5.5 5.65.5 12c0 5.08 3.29 9.39 7.86 10.92.58.11.79-.25.79-.56v-2.17c-3.2.7-3.88-1.36-3.88-1.36-.52-1.33-1.28-1.69-1.28-1.69-1.05-.72.08-.71.08-.71 1.16.08 1.77 1.19 1.77 1.19 1.03 1.77 2.71 1.26 3.37.96.1-.75.4-1.26.73-1.55-2.55-.29-5.23-1.28-5.23-5.68 0-1.26.45-2.28 1.19-3.08-.12-.29-.52-1.46.11-3.04 0 0 .98-.31 3.18 1.18A11.05 11.05 0 0 1 12 6.01c.98 0 1.97.13 2.9.4 2.2-1.49 3.17-1.18 3.17-1.18.63 1.58.23 2.75.11 3.04.74.8 1.19 1.82 1.19 3.08 0 4.41-2.69 5.38-5.25 5.67.41.36.78 1.06.78 2.14v3.2c0 .31.21.67.8.56A11.51 11.51 0 0 0 23.5 12C23.5 5.65 18.35.5 12 .5z"></path></svg> Code</a>
+</div>
+<p class="construction-note"><span aria-hidden="true">⚠️</span> Page under construction (Stay tuned!)</p>
+</div>
+</section><section aria-label="Input image, Ray Adapter, SCR backbone, and localization result" class="demo-section container" id="demo">
+<div class="demo-grid">
+<div class="input-column">
+<div class="input-panel">
+<h2 class="demo-label">Input image</h2>
+<div class="input-view" id="input-view">
+<button aria-label="Enlarge input image" class="input-frame-button" id="expand-input">
+<canvas aria-label="360 degree input frame from the Piatrium sample video" height="384" id="input-frame" width="768"></canvas><img alt="" hidden="" id="input-still"/>
+<span class="zoom-hint"><svg class="icon"><use href="#i-expand"></use></svg></span>
+</button>
+
+</div>
+<div aria-label="Input camera" class="camera-tabs" role="group">
+<button aria-pressed="true" data-camera="360" type="button">360</button>
+<button aria-pressed="false" data-camera="fisheye1" type="button">fisheye1</button>
+<button aria-pressed="false" data-camera="fisheye2" type="button">fisheye2</button>
+<button aria-pressed="false" data-camera="fisheye3" type="button">fisheye3</button>
+<button aria-pressed="false" data-camera="pinhole" type="button">pinhole</button>
+</div>
+</div>
+</div>
+<div class="flow-connector flow-in"><span>Encoder</span><svg class="icon" aria-hidden="true"><use href="#i-arrow"></use></svg></div>
+<div class="module-column">
+<div class="ray-module">
+<div class="adapter-heading">
+<h2 class="demo-label">Ray Adapter</h2>
+<button type="button" class="icon-button" id="expand-adapter" aria-label="View the original Ray Adapter architecture" title="Ray Adapter architecture"><svg class="icon"><use href="#i-expand"></use></svg></button>
+</div>
+<canvas id="ray-sphere" width="640" height="488" tabindex="0" role="img" aria-label="Schematic unit sphere: input features are conditioned on camera viewing rays. Drag or use arrow keys to rotate; Home resets the view." title="Drag to rotate · arrow keys · Home to reset"></canvas>
+</div>
+<div class="backbone-selector">
+<span class="backbone-connector" aria-hidden="true"><svg class="icon"><use href="#i-arrow"></use></svg></span>
+<h3>SCR Backbone</h3>
+<div class="backbone-tabs" role="group" aria-label="SCR backbone">
+<button type="button" data-backbone="ace-g" aria-pressed="true">ACE-G <span class="reference-number">[1]</span></button>
+<button type="button" data-backbone="ace" aria-pressed="false">ACE <span class="reference-number">[2]</span></button>
+<button type="button" data-backbone="glace" aria-pressed="false">GLACE <span class="reference-number">[3]</span></button>
+<button type="button" data-backbone="dsac" aria-pressed="false">DSAC* <span class="reference-number">[4]</span></button>
+</div>
+</div>
+</div>
+<span class="flow-connector flow-out" aria-hidden="true"><svg class="icon"><use href="#i-arrow"></use></svg></span>
+<div class="output-column" aria-label="Localization result"><span class="sample-badge" id="sample-badge" hidden="">Sample</span><div class="video-shell" id="video-shell">
+<video aria-label="ACE-G localization · 360" controls="" id="demo-video" loop="" muted="" playsinline="" poster="assets/piatrium-poster.png" preload="metadata">
+<source src="assets/piatrium.mp4" type="video/mp4"/>
+            Your browser does not support this video. <a href="assets/piatrium.mp4">Download the sample.</a>
+</video>
+<div class="video-toolbar" hidden="" id="video-toolbar">
+<button aria-label="Play demo" class="icon-button" id="play-toggle"><svg class="icon"><use href="#i-play"></use></svg></button>
+<span class="video-time mono" id="video-time">00:00 / 00:16</span>
+<input aria-label="Video position" id="video-progress" max="100" min="0" step="0.1" type="range" value="0"/>
+
+<button aria-label="Enter fullscreen" class="icon-button" id="fullscreen-toggle"><svg class="icon"><use href="#i-expand"></use></svg></button>
+</div>
+</div><button aria-label="Enlarge localization result" class="output-still" data-caption="" data-image="assets/fisheye1-result.webp" hidden="" id="output-still" type="button"><img alt="" id="output-image"/><span class="zoom-hint"><svg class="icon"><use href="#i-expand"></use></svg></span></button>
+<div id="output-pending" class="output-pending" hidden="" role="status"><span class="pending-backbone" id="pending-backbone">ACE</span><span>Coming soon</span><button type="button" id="return-sample" class="return-sample" hidden="">View sample</button></div>
+</div>
+</div>
+<div class="backbone-references"><!-- paper:backbone-references --><ol class="benchmark-references" aria-label="References">
+<li><a class="reference-number" href="https://openaccess.thecvf.com/content/ICCV2025/papers/Bruns_ACE-G_Improving_Generalization_of_Scene_Coordinate_Regression_Through_Query_Pre-Training_ICCV_2025_paper.pdf" target="_blank" rel="noopener">[1]</a><span><span class="reference-model">ACE-G</span>. Leonard Bruns et al. <a href="https://openaccess.thecvf.com/content/ICCV2025/papers/Bruns_ACE-G_Improving_Generalization_of_Scene_Coordinate_Regression_Through_Query_Pre-Training_ICCV_2025_paper.pdf" target="_blank" rel="noopener"><cite>ACE-G: Improving Generalization of Scene Coordinate Regression Through Query Pre-Training</cite></a>. ICCV, 2025.</span></li>
+<li><a class="reference-number" href="https://openaccess.thecvf.com/content/CVPR2023/papers/Brachmann_Accelerated_Coordinate_Encoding_Learning_to_Relocalize_in_Minutes_Using_RGB_CVPR_2023_paper.pdf" target="_blank" rel="noopener">[2]</a><span><span class="reference-model">ACE</span>. Eric Brachmann et al. <a href="https://openaccess.thecvf.com/content/CVPR2023/papers/Brachmann_Accelerated_Coordinate_Encoding_Learning_to_Relocalize_in_Minutes_Using_RGB_CVPR_2023_paper.pdf" target="_blank" rel="noopener"><cite>Accelerated coordinate encoding: Learning to relocalize in minutes using rgb and poses</cite></a>. CVPR, 2023.</span></li>
+<li><a class="reference-number" href="https://openaccess.thecvf.com/content/CVPR2024/html/Wang_GLACE_Global_Local_Accelerated_Coordinate_Encoding_CVPR_2024_paper.html" target="_blank" rel="noopener">[3]</a><span><span class="reference-model">GLACE</span>. Fangjinhua Wang et al. <a href="https://openaccess.thecvf.com/content/CVPR2024/html/Wang_GLACE_Global_Local_Accelerated_Coordinate_Encoding_CVPR_2024_paper.html" target="_blank" rel="noopener"><cite>Glace: Global local accelerated coordinate encoding</cite></a>. CVPR, 2024.</span></li>
+<li><a class="reference-number" href="https://arxiv.org/abs/2002.12324" target="_blank" rel="noopener">[4]</a><span><span class="reference-model">DSAC*</span>. Eric Brachmann et al. <a href="https://arxiv.org/abs/2002.12324" target="_blank" rel="noopener"><cite>Visual Camera Re-Localization From RGB and RGB-D Images Using DSAC</cite></a>. TPAMI, 2022.</span></li>
+</ol><!-- /paper:backbone-references --></div>
+</section>
+<section aria-labelledby="abstract-heading" class="paper-section section-band" id="abstract"><div class="container">
+<h2 id="abstract-heading">Abstract</h2>
+<div class="abstract-text"><!-- paper:abstract --><p>Among visual localization strategies, scene coordinate regression (SCR) has emerged as an attractive approach for its compactness, accuracy, and speed. Despite these advantages, SCR models generalize poorly across substantially different camera models, such as non-pinhole or strongly rectified imagery. This limitation arises because, changes in field of view, lens distortion, or rectification-induced resampling can make the same scene content appear differently depending on its pixel position, degrading localization accuracy. To cope with this limitation, we introduce Ray-SCR, a lightweight extension to existing SCR architectures that conditions local visual features on their calibrated viewing rays and refines neighboring ray-conditioned features with a shallow local Transformer. We further formulate supervision directly in ray space and use sparse SfM points as metric anchors that link observations across views and camera models. Taken together, these components enable a single scene representation built from a panoramic mapping sequence to accurately localize query images captured with very different cameras, including pinhole, fisheye, and omnidirectional cameras.</p>
+<p>We evaluate Ray-SCR across multiple SCR architectures and on datasets containing pinhole, fisheye, and omnidirectional cameras. The proposed ray conditioning substantially improves generalization across cameras and leads to state-of-the-art localization performance in these challenging cross-camera settings.</p><!-- /paper:abstract --></div>
+</div></section>
+<section aria-labelledby="method-heading" class="paper-section container" id="method">
+<h2 id="method-heading">Method</h2>
+<figure class="paper-figure pipeline-figure">
+<button aria-label="Enlarge mapping pipeline" class="image-zoom" data-caption="Method" data-image="assets/pipeline.webp">
+<img alt="fig2_mapping_v30.pdf" height="848" src="assets/pipeline.webp" width="2400"/>
+<span class="zoom-hint"><svg class="icon"><use href="#i-expand"></use></svg></span>
+</button>
+<figcaption><!-- paper:pipeline-caption --><strong>Ray-SCR scene-training pipeline. </strong>We first extract encoder features from the training images, optionally augmented with sampled virtual views. SfM points are projected into each view, and features whose angular distance <i>θ</i><sub>i</sub> from the corresponding viewing ray <b>r</b><sub>i</sub> is below a predefined threshold are retained in the training buffer. The Ray Adapter then injects camera-geometry information by encoding the associated viewing rays into the features and locally processing groups of neighboring features with a lightweight Transformer. The adapted features are subsequently passed through the standard SCR pipeline. Here, ACE-G is shown as an example, using a DINO encoder together with trainable scene-specific map codes.<!-- /paper:pipeline-caption --></figcaption>
+</figure>
+
+</section>
+<section aria-labelledby="experiments-heading" class="paper-section section-band" id="experiments"><div class="container">
+<h2 id="experiments-heading">Experiments</h2>
+<div aria-label="Benchmark" class="benchmark-tabs" role="tablist">
+<button aria-controls="panel-360loc-day" aria-selected="true" id="tab-360loc-day" role="tab" tabindex="0" type="button">360Loc-Day</button>
+<button aria-controls="panel-360loc-night" aria-selected="false" id="tab-360loc-night" role="tab" tabindex="-1" type="button">360Loc-Night</button>
+<button aria-controls="panel-360loc-scr" aria-selected="false" id="tab-360loc-scr" role="tab" tabindex="-1" type="button">360Loc-Day (SCR)</button>
+<button aria-controls="panel-omniscenes" aria-selected="false" id="tab-omniscenes" role="tab" tabindex="-1" type="button">OmniScenes</button>
+<button aria-controls="panel-aachen" aria-selected="false" id="tab-aachen" role="tab" tabindex="-1" type="button">Aachen-Day</button>
+</div>
+<div aria-labelledby="tab-360loc-day" class="benchmark-panel" id="panel-360loc-day" role="tabpanel" tabindex="0">
+<!-- paper:table1 --><figure class="paper-figure paper-table">
+<button type="button" class="image-zoom" data-image="assets/table-360loc-day.svg" data-caption="" data-table="true" aria-label="Enlarge 360Loc-Day results">
+<img src="assets/table-360loc-day.svg" alt="360Loc-Day results" width="1456" height="415" loading="lazy"/>
+<span class="zoom-hint" aria-hidden="true"><svg class="icon"><use href="#i-expand"></use></svg></span>
+</button>
+<p class="table-metric">Median translation / rotation (m / °)</p>
+<ol class="benchmark-references" aria-label="References">
+<li><a class="reference-number" href="https://openaccess.thecvf.com/content/CVPR2024/html/Huang_360Loc_A_Dataset_and_Benchmark_for_Omnidirectional_Visual_Localization_with_CVPR_2024_paper.html" target="_blank" rel="noopener">[1]</a><span>Huajian Huang et al. <a href="https://openaccess.thecvf.com/content/CVPR2024/html/Huang_360Loc_A_Dataset_and_Benchmark_for_Omnidirectional_Visual_Localization_with_CVPR_2024_paper.html" target="_blank" rel="noopener"><cite>360Loc: A Dataset and Benchmark for Omnidirectional Visual Localization with Cross-Device Queries</cite></a>. CVPR, 2024.</span></li>
+<li><a class="reference-number" href="https://proceedings.mlr.press/v267/wang25dv.html" target="_blank" rel="noopener">[2]</a><span>Yuanze Wang et al. <a href="https://proceedings.mlr.press/v267/wang25dv.html" target="_blank" rel="noopener"><cite>Enhancing Visual Localization with Cross-Domain Image Generation</cite></a>. ICML, 2025.</span></li>
+</ol>
+</figure><!-- /paper:table1 -->
+</div>
+<div aria-labelledby="tab-360loc-night" class="benchmark-panel" hidden="" id="panel-360loc-night" role="tabpanel" tabindex="0">
+<!-- paper:table2 --><figure class="paper-figure paper-table">
+<button type="button" class="image-zoom" data-image="assets/table-360loc-night.svg" data-caption="" data-table="true" aria-label="Enlarge 360Loc-Night results">
+<img src="assets/table-360loc-night.svg" alt="360Loc-Night results" width="1466" height="415" loading="lazy"/>
+<span class="zoom-hint" aria-hidden="true"><svg class="icon"><use href="#i-expand"></use></svg></span>
+</button>
+<p class="table-metric">Median translation / rotation (m / °)</p>
+<ol class="benchmark-references" aria-label="References">
+<li><a class="reference-number" href="https://openaccess.thecvf.com/content/CVPR2024/html/Huang_360Loc_A_Dataset_and_Benchmark_for_Omnidirectional_Visual_Localization_with_CVPR_2024_paper.html" target="_blank" rel="noopener">[1]</a><span>Huajian Huang et al. <a href="https://openaccess.thecvf.com/content/CVPR2024/html/Huang_360Loc_A_Dataset_and_Benchmark_for_Omnidirectional_Visual_Localization_with_CVPR_2024_paper.html" target="_blank" rel="noopener"><cite>360Loc: A Dataset and Benchmark for Omnidirectional Visual Localization with Cross-Device Queries</cite></a>. CVPR, 2024.</span></li>
+<li><a class="reference-number" href="https://proceedings.mlr.press/v267/wang25dv.html" target="_blank" rel="noopener">[2]</a><span>Yuanze Wang et al. <a href="https://proceedings.mlr.press/v267/wang25dv.html" target="_blank" rel="noopener"><cite>Enhancing Visual Localization with Cross-Domain Image Generation</cite></a>. ICML, 2025.</span></li>
+</ol>
+</figure><!-- /paper:table2 -->
+</div>
+<div aria-labelledby="tab-360loc-scr" class="benchmark-panel" hidden="" id="panel-360loc-scr" role="tabpanel" tabindex="0">
+<!-- paper:table3 --><figure class="paper-figure paper-table">
+<button type="button" class="image-zoom" data-image="assets/table-360loc-scr.svg" data-caption="" data-table="true" aria-label="Enlarge 360Loc-Day (SCR) results: Atrium, Concourse, Hall, and Piatrium in a 2 × 2 grid">
+<img src="assets/table-360loc-scr.svg" alt="360Loc-Day (SCR) results: Atrium, Concourse, Hall, and Piatrium in a 2 × 2 grid" width="1521" height="367" loading="lazy"/>
+<span class="zoom-hint" aria-hidden="true"><svg class="icon"><use href="#i-expand"></use></svg></span>
+</button>
+<p class="table-metric">Median translation / rotation (m / °)</p>
+
+</figure><!-- /paper:table3 -->
+</div>
+<div aria-labelledby="tab-omniscenes" class="benchmark-panel" hidden="" id="panel-omniscenes" role="tabpanel" tabindex="0">
+<figure class="paper-figure omniscenes-figure">
+<button aria-label="Enlarge OmniScenes graph" class="image-zoom" data-caption="" data-image="assets/omniscenes.webp">
+<img alt="Map size and localization accuracy on OmniScenes." height="817" src="assets/omniscenes.webp" width="1372"/>
+<span class="zoom-hint"><svg class="icon"><use href="#i-expand"></use></svg></span>
+</button>
+<!-- paper:omniscenes-references --><ol class="benchmark-references" aria-label="References">
+<li><a class="reference-number" href="https://openaccess.thecvf.com/content/CVPR2024/html/Kim_Fully_Geometric_Panoramic_Localization_CVPR_2024_paper.html" target="_blank" rel="noopener">[3]</a><span>Junho Kim et al. <a href="https://openaccess.thecvf.com/content/CVPR2024/html/Kim_Fully_Geometric_Panoramic_Localization_CVPR_2024_paper.html" target="_blank" rel="noopener"><cite>Fully Geometric Panoramic Localization</cite></a>. CVPR, 2024.</span></li>
+<li><a class="reference-number" href="https://openaccess.thecvf.com/content/ICCV2023/html/Kim_LDL_Line_Distance_Functions_for_Panoramic_Localization_ICCV_2023_paper.html" target="_blank" rel="noopener">[4]</a><span>Junho Kim et al. <a href="https://openaccess.thecvf.com/content/ICCV2023/html/Kim_LDL_Line_Distance_Functions_for_Panoramic_Localization_ICCV_2023_paper.html" target="_blank" rel="noopener"><cite>LDL: Line Distance Functions for Panoramic Localization</cite></a>. ICCV, 2023.</span></li>
+</ol><!-- /paper:omniscenes-references -->
+</figure>
+</div>
+<div aria-labelledby="tab-aachen" class="benchmark-panel" hidden="" id="panel-aachen" role="tabpanel" tabindex="0">
+<!-- paper:aachen-table --><figure class="paper-figure paper-table aachen-table">
+<button type="button" class="image-zoom" data-image="assets/table-aachen-day.svg" data-caption="" data-table="true" aria-label="Enlarge Aachen-Day results">
+<img src="assets/table-aachen-day.svg" alt="Aachen-Day results" width="686" height="152" loading="lazy"/>
+<span class="zoom-hint" aria-hidden="true"><svg class="icon"><use href="#i-expand"></use></svg></span>
+</button>
+<p class="table-metric">Success rate (%)</p>
+
+</figure><!-- /paper:aachen-table -->
+</div>
+</div></section>
+<section aria-labelledby="bibtex-heading" class="paper-section container bibtex-section" id="bibtex">
+<h2 id="bibtex-heading">BibTeX</h2>
+<pre><code>@inproceedings{cho2027rayscr,
+  title     = {Ray-SCR: Generalizing Scene Coordinate Regression Across Camera Models},
+  author    = {Cho, Jaemin and Nasypanyi, Oleksii and Rameau, Francois},
+  booktitle = {IEEE/CVF Winter Conference on Applications of Computer Vision (WACV)},
+  year      = {2027}
+}</code></pre>
+</section>
+</main>
+<dialog aria-labelledby="dialog-caption" id="figure-dialog">
+<div class="dialog-toolbar"><p id="dialog-caption"></p><button aria-label="Close figure" class="icon-button" id="close-dialog"><svg class="icon"><use href="#i-close"></use></svg></button></div>
+<div class="dialog-image-wrap"><img alt="" id="dialog-image"/></div>
+</dialog>
+</body>
+</html>
