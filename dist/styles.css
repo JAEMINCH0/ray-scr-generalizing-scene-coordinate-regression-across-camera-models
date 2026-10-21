@@ -87,7 +87,7 @@ h1{font-family:var(--heading);font-size:inherit;font-weight:700;line-height:1.14
 .camera-tabs button{min-width:0;padding:8px 4px;background:#262626;border:1px solid #444;border-radius:4px;color:#bcbcbc;font-size:11px;white-space:nowrap}
 .camera-tabs button:hover{border-color:#88a9be;color:#e7f5ff}
 .camera-tabs button[aria-pressed=true]{background:#203340;border-color:#78bde7;color:#a9ddff}
-.module-column{display:grid;grid-template-columns:minmax(0,1fr) 104px;gap:24px;align-items:center;min-width:0}
+.module-column{display:grid;grid-template-columns:minmax(0,1fr) 120px;gap:8px;align-items:stretch;min-width:0}
 .ray-module{min-width:0;border:1px solid #3c4240;border-radius:9px;background:linear-gradient(150deg,#1b201e,#121414 65%);overflow:hidden}
 .adapter-heading{display:flex;align-items:center;justify-content:center;position:relative;padding:16px 38px 0}
 .adapter-heading .demo-label{margin:0;text-align:center}
@@ -95,10 +95,10 @@ h1{font-family:var(--heading);font-size:inherit;font-weight:700;line-height:1.14
 #ray-sphere{width:100%;height:auto;aspect-ratio:320/244;cursor:grab;touch-action:pan-y}
 #ray-sphere:active{cursor:grabbing}
 #ray-sphere:focus-visible{outline-offset:-5px;border-radius:8px}
-.backbone-selector{position:relative;min-width:0}
-.backbone-selector h3{font-family:var(--heading);font-size:12px;font-weight:500;text-align:center;margin:0 0 10px;white-space:nowrap}
-.backbone-tabs{display:grid;grid-template-columns:1fr;gap:7px}
-.backbone-tabs button{display:flex;align-items:baseline;justify-content:center;gap:7px;padding:9px 6px;border:1px solid #414a44;border-radius:4px;background:#202622;color:#b7c0b9;font-size:12px;white-space:nowrap}
+.backbone-selector{position:relative;display:grid;min-width:0;min-height:0}
+.backbone-selector h3{position:absolute;bottom:100%;width:100%;font-family:var(--heading);font-size:12px;font-weight:500;text-align:center;margin:0 0 8px;white-space:nowrap}
+.backbone-tabs{display:grid;grid-template-columns:1fr;grid-template-rows:repeat(4,minmax(32px,1fr));gap:7px}
+.backbone-tabs button{display:flex;align-items:center;justify-content:center;gap:7px;padding:0 8px;border:1px solid #414a44;border-radius:5px;background:#202622;color:#b7c0b9;font-size:14px;white-space:nowrap}
 .backbone-tabs .reference-number{font-size:9px}
 .backbone-tabs button:hover{border-color:#8aa77b;color:#e2f4d8}
 .backbone-tabs button[aria-pressed=true]{background:#2b3c25;border-color:var(--citation);color:var(--citation)}
@@ -107,8 +107,6 @@ h1{font-family:var(--heading);font-size:inherit;font-weight:700;line-height:1.14
 .flow-in{position:relative}
 .flow-in span{position:absolute;bottom:calc(100% + 4px);font-size:11px;color:var(--muted)}
 .flow-in .icon{width:42px;height:24px}
-.backbone-connector{position:absolute;left:-22px;top:50%;transform:translateY(-50%);color:#7d9685;pointer-events:none}
-.backbone-connector .icon{width:20px;height:20px}
 .backbone-references{max-width:1280px;margin:24px auto 0}
 .backbone-references .benchmark-references{margin:0;font-size:11px}
 .backbone-references .reference-model{color:var(--citation)}
@@ -267,7 +265,7 @@ h1{font-family:var(--heading);font-size:inherit;font-weight:700;line-height:1.14
  .ray-field-left{left:-225px;top:0}.ray-field-right{right:-225px;top:20px}
  .demo-grid{grid-template-columns:1fr}
  .input-column{max-width:480px;width:100%;justify-self:center}
- .module-column{max-width:480px;width:100%;justify-self:center;grid-template-columns:minmax(0,1fr) 96px}
+ .module-column{max-width:480px;width:100%;justify-self:center;grid-template-columns:minmax(0,1fr) 104px}
  .output-column{grid-column:auto}
  .flow-in{height:54px;flex-direction:column;gap:3px}
  .flow-in span{position:static;font-size:10px}
@@ -278,7 +276,7 @@ h1{font-family:var(--heading);font-size:inherit;font-weight:700;line-height:1.14
  .adapter-heading .icon-button{right:3px;top:8px;width:24px;height:24px}
  .backbone-selector h3{font-size:11px;margin-bottom:8px}
  .backbone-tabs{gap:6px}
- .backbone-tabs button{padding:8px 4px;font-size:11px}
+ .backbone-tabs button{padding:0 6px;font-size:12px}
  .demo-label{font-size:17px;margin-bottom:10px}
  .demo-section{padding-bottom:35px}
  .camera-tabs{padding:11px 12px 12px;gap:4px}
