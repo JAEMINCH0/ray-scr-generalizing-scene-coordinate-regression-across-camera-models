@@ -59,7 +59,7 @@ h1{font-family:var(--heading);font-size:inherit;font-weight:700;line-height:1.14
 .affiliation-list{font-family:var(--heading);font-size:16.64px;color:#c8c8c8;margin-top:8px;line-height:1.5}
 .affiliation-list span{display:inline-block;margin:0 12px}
 .affiliation-list sup{font-size:11px}
-.email-list{display:flex;align-items:center;justify-content:center;gap:22px;margin-top:24px;font-family:"Manrope",Arial,sans-serif;font-size:13px;line-height:1.7;letter-spacing:.2px;color:#c16b73}
+.email-list{display:flex;align-items:center;justify-content:center;gap:22px;margin-top:24px;font-family:"Manrope",Arial,sans-serif;font-size:13px;line-height:1.7;letter-spacing:.2px;color:#929292}
 .email-list a{white-space:nowrap}
 .email-list a:hover{text-decoration:underline;text-underline-offset:3px}
 .email-list>span{color:inherit;opacity:.65}
@@ -211,7 +211,7 @@ h1{font-family:var(--heading);font-size:inherit;font-weight:700;line-height:1.14
 .input-dialog .dialog-image-wrap img{width:100%}
 [data-theme=light] .site-header{border-color:#e5e8ec}
 [data-theme=light] .affiliation-list{color:#5c6268}
-[data-theme=light] .email-list{color:#800020}
+[data-theme=light] .email-list{color:#686868}
 [data-theme=light] .construction-note{color:#8a6800}
 [data-theme=light] .ray-field{color:#8497a5}
 [data-theme=light] .input-panel{background:#f5f6f8;border-color:#d7dde2}
